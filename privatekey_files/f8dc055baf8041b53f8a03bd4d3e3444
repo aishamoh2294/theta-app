@@ -1,0 +1,26 @@
+/*
+      www.OnlineWebFonts.Com 
+      You must credit the author Copy this link on your web 
+      <div>Font made from <a href="http://www.onlinewebfonts.com/fonts">Web Fonts</a>is licensed by CC BY 4.0</div>
+      OR
+      <a href="http://www.onlinewebfonts.com/fonts">Web Fonts</a>
+
+      CSS rules to specify fonts
+
+      font-family: "Alwyn New";;
+
+*/
+
+@font-face{
+    font-family: "Alwyn New";
+    src: url("https://db.onlinewebfonts.com/t/f8dc055baf8041b53f8a03bd4d3e3444.eot");
+    src: url("https://db.onlinewebfonts.com/t/f8dc055baf8041b53f8a03bd4d3e3444.eot?#iefix")format("embedded-opentype"),
+        url("https://db.onlinewebfonts.com/t/f8dc055baf8041b53f8a03bd4d3e3444.woff")format("woff"),
+        url("https://db.onlinewebfonts.com/t/f8dc055baf8041b53f8a03bd4d3e3444.woff2")format("woff2"),
+        url("https://db.onlinewebfonts.com/t/f8dc055baf8041b53f8a03bd4d3e3444.ttf")format("truetype"),
+        url("https://db.onlinewebfonts.com/t/f8dc055baf8041b53f8a03bd4d3e3444.svg#Alwyn New")format("svg");
+    font-weight:normal;
+    font-style:normal;
+    font-display:swap;
+}
+ 

